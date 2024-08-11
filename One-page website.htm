@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Page Website</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file if any -->
+</head>
+<body>
+
+    <div class="gallery">
+        <img src="images/thumb1.jpg" alt="Image 1" class="thumbnail">
+        <img src="images/thumb2.jpg" alt="Image 2" class="thumbnail">
+        <img src="images/thumb3.jpg" alt="Image 3" class="thumbnail">
+        <!-- Add more thumbnails as needed -->
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="caption"></div>
+    </div>
+
+    <script src="JS/one_page_website.js"></script> <!-- Link to your JS file -->
+</body>
+</html>
+------------------------------------------------------------ java:
+// Get the modal
+var lightbox = document.getElementById("lightbox");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var lightboxImg = document.getElementById("lightbox-img");
+var captionText = document.getElementById("caption");
+
+document.querySelectorAll('.thumbnail').forEach(image => {
+    image.onclick = function(){
+        lightbox.style.display = "block";
+        lightboxImg.src = this.src.replace('thumb', 'large'); // Adjust based on your image naming convention
+        captionText.innerHTML = this.alt;
+    }
+});
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    lightbox.style.display = "none";
+}
