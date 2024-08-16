@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Page Website</title>
     <style>
-
         body {
             font-family: Arial, sans-serif;
         }
@@ -59,37 +58,28 @@
     </div>
 
     <script>
-        
         const thumbnails = document.querySelectorAll('.thumbnail');
-
-        
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
         const close = document.querySelector('.close');
 
-        
         function openLightbox(event) {
             lightbox.style.display = 'block';
-            lightboxImage.src = event.target.src.replace('_thumbnail', ''); // Replace with the full-size image
+            const fullSizeImageSrc = event.target.src.replace('_thumbnail', '');
+            lightboxImage.src = fullSizeImageSrc;
         }
 
-       
-        function closeLightbox() {
-            lightbox.style.display = 'none';
-        }
-
-        
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', openLightbox);
         });
 
-        
-        close.addEventListener('click', closeLightbox);
+        close.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
 
-        
-        lightbox.addEventListener('click', function(event) {
+        lightbox.addEventListener('click', (event) => {
             if (event.target === lightbox) {
-                closeLightbox();
+                lightbox.style.display = 'none';
             }
         });
     </script>
